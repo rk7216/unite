@@ -14354,7 +14354,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Absol',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6000,
         'attack' => 670,
         'defense' => 259,
@@ -14370,7 +14370,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Aegislash',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7302,
         'attack' => 357,
         'defense' => 250,
@@ -14386,7 +14386,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Azumarill',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7850,
         'attack' => 461,
         'defense' => 399,
@@ -14402,7 +14402,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Blastoise',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9800,
         'attack' => 293,
         'defense' => 599,
@@ -14418,7 +14418,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Blaziken',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7800,
         'attack' => 490,
         'defense' => 458,
@@ -14434,7 +14434,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Blissey',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 10000,
         'attack' => 310,
         'defense' => 200,
@@ -14450,7 +14450,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Buzzwole',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7800,
         'attack' => 452,
         'defense' => 500,
@@ -14466,7 +14466,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Chandelure',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 295,
         'defense' => 175,
@@ -14482,7 +14482,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Charizard',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7700,
         'attack' => 463,
         'defense' => 350,
@@ -14498,7 +14498,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Cinderace',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5400,
         'attack' => 418,
         'defense' => 250,
@@ -14514,7 +14514,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Clefable',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8000,
         'attack' => 300,
         'defense' => 260,
@@ -14530,7 +14530,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Comfey',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5500,
         'attack' => 290,
         'defense' => 190,
@@ -14546,7 +14546,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Cramorant',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6301,
         'attack' => 286,
         'defense' => 300,
@@ -14562,7 +14562,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Crustle',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9900,
         'attack' => 344,
         'defense' => 580,
@@ -14578,7 +14578,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Decidueye',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5152,
         'attack' => 450,
         'defense' => 250,
@@ -14594,7 +14594,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Delphox',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6290,
         'attack' => 292,
         'defense' => 174,
@@ -14610,7 +14610,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Dodrio',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 625,
         'defense' => 298,
@@ -14626,7 +14626,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Dragapult',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5500,
         'attack' => 500,
         'defense' => 240,
@@ -14642,7 +14642,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Dragonite',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7750,
         'attack' => 550,
         'defense' => 415,
@@ -14658,7 +14658,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Duraludon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5397,
         'attack' => 500,
         'defense' => 301,
@@ -14674,7 +14674,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Eldegoss',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8002,
         'attack' => 310,
         'defense' => 200,
@@ -14690,7 +14690,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Espeon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6320,
         'attack' => 289,
         'defense' => 175,
@@ -14706,7 +14706,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Garchomp',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7750,
         'attack' => 516,
         'defense' => 472,
@@ -14722,7 +14722,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Gardevoir',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6320,
         'attack' => 291,
         'defense' => 174,
@@ -14738,7 +14738,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Gengar',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7200,
         'attack' => 364,
         'defense' => 290,
@@ -14754,7 +14754,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Glaceon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6350,
         'attack' => 116,
         'defense' => 175,
@@ -14770,7 +14770,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Goodra',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9800,
         'attack' => 300,
         'defense' => 600,
@@ -14786,7 +14786,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Greedent',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9099,
         'attack' => 345,
         'defense' => 433,
@@ -14802,7 +14802,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Greninja',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 5152,
         'attack' => 460,
         'defense' => 250,
@@ -14818,7 +14818,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Gyarados',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7000,
         'attack' => 400,
         'defense' => 400,
@@ -14834,7 +14834,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Hoopa',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7902,
         'attack' => 309,
         'defense' => 299,
@@ -14850,7 +14850,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Inteleon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 115,
         'defense' => 170,
@@ -14866,7 +14866,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Lapras',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9800,
         'attack' => 310,
         'defense' => 550,
@@ -14882,7 +14882,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Leafeon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6250,
         'attack' => 660,
         'defense' => 290,
@@ -14898,7 +14898,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Lucario',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7249,
         'attack' => 429,
         'defense' => 390,
@@ -14914,7 +14914,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Machamp',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7650,
         'attack' => 479,
         'defense' => 490,
@@ -14930,7 +14930,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mamoswine',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9648,
         'attack' => 325,
         'defense' => 510,
@@ -14946,7 +14946,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Meowscarada',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 660,
         'defense' => 290,
@@ -14962,7 +14962,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Metagross',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8150,
         'attack' => 530,
         'defense' => 550,
@@ -14978,7 +14978,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mew',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6500,
         'attack' => 300,
         'defense' => 230,
@@ -14994,7 +14994,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mewtwo X',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7800,
         'attack' => 500,
         'defense' => 430,
@@ -15010,7 +15010,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mewtwo Y',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6500,
         'attack' => 116,
         'defense' => 200,
@@ -15026,7 +15026,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mimikyu',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7400,
         'attack' => 420,
         'defense' => 400,
@@ -15042,7 +15042,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Miraidon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7000,
         'attack' => 330,
         'defense' => 280,
@@ -15058,7 +15058,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Mr. Mime',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8800,
         'attack' => 293,
         'defense' => 420,
@@ -15074,7 +15074,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Ninetales',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6299,
         'attack' => 289,
         'defense' => 175,
@@ -15090,7 +15090,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Pikachu',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 290,
         'defense' => 175,
@@ -15106,7 +15106,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Sableye',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6900,
         'attack' => 300,
         'defense' => 200,
@@ -15122,7 +15122,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Scizor',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8100,
         'attack' => 460,
         'defense' => 510,
@@ -15138,7 +15138,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Scyther',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6450,
         'attack' => 630,
         'defense' => 300,
@@ -15154,7 +15154,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Slowbro',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9400,
         'attack' => 292,
         'defense' => 480,
@@ -15170,7 +15170,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Snorlax',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9899,
         'attack' => 345,
         'defense' => 580,
@@ -15186,7 +15186,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Sylveon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7148,
         'attack' => 363,
         'defense' => 260,
@@ -15202,7 +15202,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Talonflame',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6300,
         'attack' => 710,
         'defense' => 290,
@@ -15218,7 +15218,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Trevenant',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9599,
         'attack' => 330,
         'defense' => 520,
@@ -15234,7 +15234,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Tsareena',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7298,
         'attack' => 460,
         'defense' => 410,
@@ -15250,7 +15250,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Tyranitar',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8800,
         'attack' => 485,
         'defense' => 500,
@@ -15266,7 +15266,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Umbreon',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9550,
         'attack' => 350,
         'defense' => 500,
@@ -15282,7 +15282,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Urshifu',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 7900,
         'attack' => 480,
         'defense' => 430,
@@ -15298,7 +15298,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Venusaur',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6500,
         'attack' => 293,
         'defense' => 225,
@@ -15314,7 +15314,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Wigglytuff',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 9452,
         'attack' => 310,
         'defense' => 539,
@@ -15330,7 +15330,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Zacian',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 8000,
         'attack' => 580,
         'defense' => 440,
@@ -15346,7 +15346,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Zeraora',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6319,
         'attack' => 649,
         'defense' => 300,
@@ -15362,7 +15362,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 [
         'pokemon_name' => 'Zoroark',
-        'lv' => 1,
+        'lv' => 15,
         'hp' => 6200,
         'attack' => 660,
         'defense' => 260,
