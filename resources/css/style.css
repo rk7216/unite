@@ -1,0 +1,13 @@
+/* styles.css */
+
+.pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 10*7のグリッド */
+    gap: 10px; /* グリッド要素間の間隔 */
+}
+
+.pokemon-item {
+    border: 1px solid #ccc; /* ボーダーを付けるなど、ポケモン項目のスタイルを指定 */
+    padding: 10px;
+    text-align: center;
+}

@@ -1,6 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PokemonController;
+use App\Http\Controllers\PokemonBuildController;
+
+// routes/web.php
+
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +23,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PokemonController::class, 'index'])->name('posts.index');
+    
+Route::get('/{pokemon_name}', [PokemonBuildController::class, 'index'])->name('posts.builder');
