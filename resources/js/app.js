@@ -1,5 +1,6 @@
 import './bootstrap';
 
+<<<<<<< Updated upstream
 // public/js/app.js
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.item-select').forEach(select => {
@@ -21,3 +22,10 @@ function updatePokemonStats(selectedItem) {
         }
     });
 }
+=======
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
+>>>>>>> Stashed changes
