@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
+
 use App\Http\Controllers\PokemonController;
 use App\Http\Controllers\PokemonBuildController;
 use App\Http\Controllers\PokemonTeamController;
@@ -17,8 +17,6 @@ use App\Http\Controllers\Auth\RegisterController;
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 */
-=======
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -31,17 +29,6 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 |
 */
 
-<<<<<<< Updated upstream
-Route::get('/', [PokemonController::class, 'index'])->name('posts.index');
-
-Route::get('/teams', [PokemonTeamController::class, 'index'])->name('team.index');
-    
-Route::get('/pokemons/{pokemon_name}', [PokemonBuildController::class, 'index'])->name('pokemon.builder');
-
-Route::get('/myteam', [MyTeamController::class, 'index'])->name('myteam.index');
-
-Route::get('/medal', [MedalController::class, 'index'])->name('medal.index');
-=======
 Route::get('/', function () {
     return view('welcome');
 });
@@ -57,4 +44,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
->>>>>>> Stashed changes
+Route::get('/', [PokemonController::class, 'index'])->name('posts.index');
+
+Route::get('/teams', [PokemonTeamController::class, 'index'])->name('team.index');
+    
+Route::get('/pokemons/{pokemon_name}', [PokemonBuildController::class, 'index'])->name('pokemon.builder');
+
+Route::get('/myteam', [MyTeamController::class, 'index'])->name('myteam.index');
+
+Route::get('/medal', [MedalController::class, 'index'])->name('medal.index');
