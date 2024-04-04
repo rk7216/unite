@@ -11,3 +11,7 @@
     padding: 10px;
     text-align: center;
 }
+
+.stat-changed {
+    color: red; /* 加算後のステータスに適用する色 */
+}
