@@ -21,8 +21,8 @@ class CreateItemsTable extends Migration
             $table->double('defense')->nullable();
             $table->double('sp_attack')->nullable();
             $table->double('sp_defense')->nullable();
-            $table->decimal('crit_rate')->nullable();
-            $table->decimal('cdr')->nullable();
+            $table->decimal('crit_rate', 5, 4)->nullable();
+            $table->decimal('cdr', 5, 4)->nullable();
             $table->double('attack_speed')->nullable();
             $table->double('move_speed')->nullable();
             $table->string('image')->nullable();

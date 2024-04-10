@@ -9,19 +9,29 @@
     {{-- スタイルシートのリンク --}}
 </head>
 <body>
-        <header>
-        <!-- Register/Loginボタン -->
+    <header>
         <div class="register-login-buttons" style="text-align: right;">
-            <button>Register</button>
-            <button>Login</button>
+            @auth
+                {{-- ログインしている場合、ユーザー名とログアウトボタンを表示 --}}
+                <span class="mr-4">Welcome, {{ Auth::user()->name }}!</span>
+                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            @else
+                {{-- ログインしていない場合、RegisterとLoginボタンを表示 --}}
+                <a href="{{ route('register') }}" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a>
+                <a href="{{ route('login') }}" class="ml-4 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</a>
+            @endauth
         </div>
         <nav style="text-align: center;">
-            <a href="{{ route('posts.index') }}">Home</a> |
-            <a href="{{ route('team.index') }}">Teams</a> |
-            <a href="{{ route('myteam.index') }}">My Team</a>|
-            <a href="{{ route('medal.index') }}">Medal Set</a>
+            <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
+            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
+            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
         </nav>
     </header>
+
     <div class="container">
         <h1>Unite Strategy Builder - My Team</h1>
         {{-- チーム名の入力 --}}

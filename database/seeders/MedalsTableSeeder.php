@@ -15,6 +15,8 @@ class MedalsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('pokemons')->delete();
+
         $MedalData = [
             [
             'medal_name' => 'Bulbasaur',

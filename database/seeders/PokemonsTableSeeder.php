@@ -15,6 +15,8 @@ class PokemonsTableSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('pokemons')->delete();
+
         $PokemonData = [
                 [				
                	'pokemon_name' 	=> 	'Absol'	,
