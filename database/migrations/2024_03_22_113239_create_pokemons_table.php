@@ -22,8 +22,8 @@ class CreatePokemonsTable extends Migration
             $table->double('defense');
             $table->double('sp_attack');
             $table->double('sp_defense');
-            $table->decimal('crit_rate');
-            $table->decimal('cdr');
+            $table->decimal('crit_rate', 5, 4);
+            $table->decimal('cdr', 5, 4);
             $table->double('life_steal');
             $table->double('attack_speed');
             $table->double('move_speed');
