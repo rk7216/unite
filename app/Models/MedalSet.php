@@ -19,7 +19,7 @@ class MedalSet extends Model
     // メダルセットに含まれるメダルを取得
     public function medals()
     {
-        return $this->belongsToMany(Medal::class, 'medal_set_medals', 'medal_set_id', 'medal_id')
+        return $this->belongsToMany(Medal::class, 'medal_medal_set', 'medal_set_medals', 'medal_set_id', 'medal_id')
                     ->withTimestamps();
     }
 }

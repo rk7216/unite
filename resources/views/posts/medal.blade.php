@@ -49,17 +49,42 @@
 
         <div id="selectedMedals">
             <h2>Selected Medals</h2>
-            <!-- 選択したメダルの一覧をJavaScriptで動的に追加 -->
+            @if(session('selectedMedals'))
+                <h2>Selected Medals</h2>
+                <ul>
+                    @foreach(session('selectedMedals') as $medal)
+                        <li>{{ $medal->name }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
 
         <div id="medalStats">
             <h2>Medal Stats</h2>
-            <!-- メダルステータスの反映結果をJavaScriptで動的に追加 -->
-        </div>
-
+            @if(session('medalStats'))
+                <h2>Medal Stats</h2>
+                <ul>
+                    <li>HP: {{ session('medalStats.hp') }}</li>
+                    <li>Attack: {{ session('medalStats.attack') }}</li>
+                    <li>Defense: {{ session('medalStats.defense') }}</li>
+                    <li>Sp.Attack: {{ session('medalStats.sp_attack') }}</li>
+                    <li>Sp.Defense: {{ session('medalStats.sp_defense') }}</li>
+                    <li>Crit Rate: {{ session('medalStats.crit_rate') }}</li>
+                    <li>CDR: {{ session('medalStats.cdr') }}</li>
+                    <li>Move_speed: {{ session('medalStats.move_speed') }}</li>
+                </ul>
+            @endif
+            </div>
         <div id="colorCount">
             <h2>Color Count</h2>
-            <!-- 色のカウントをJavaScriptで動的に追加 -->
+            @if(session('colorCount'))
+                <h2>Color Count</h2>
+                <ul>
+                    @foreach(session('colorCount') as $color => $count)
+                        <li>{{ $color }}: {{ $count }}</li>
+                    @endforeach
+                </ul>
+            @endif
         </div>
     </div>
 
