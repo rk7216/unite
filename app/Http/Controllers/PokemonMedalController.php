@@ -1,18 +1,18 @@
 <?php
 
-// PokemonItemController.php
+// PokemonMedalController.php
 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PokeModel;
-use App\Models\Item;
+use App\Models\Medal;
 use App\Models\MedalSet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
-class PokemonItemController extends Controller
+class PokemonMedalController extends Controller
 {
     public function attachItems(Request $request, $pokemonId)
     {
