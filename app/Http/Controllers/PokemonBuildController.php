@@ -7,7 +7,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\PokeModel;
 use App\Models\Item;
-use App\Models\MedalSet;
+use App\Models\MedalGroup;
+use App\Models\ItemGroup;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -22,7 +23,10 @@ class PokemonBuildController extends Controller
         $items = Item::all();
         
         // ログインしたユーザーに紐づくメダルセットの一覧を取得
-        $medalsets = MedalSet::where('user_id', Auth::id())->get();
+        $medalGroups = MedalGroup::where('user_id', Auth::id())->get();
+        
+        // ItemGroup モデルからデータを取得
+        $itemGroups = ItemGroup::all(); 
         
         // ポケモンが存在しない場合はエラーを返すか、リダイレクトなどの適切な処理を行う
         if (!$pokemon) {
@@ -33,71 +37,65 @@ class PokemonBuildController extends Controller
         $pokemon_levels = PokeModel::where('pokemon_name', $pokemon_name)->get();
 
         // データをビューに渡す
-        return view('posts.builder', compact('pokemon', 'pokemon_levels', 'items','medalsets'));
+        return view('posts.builder', compact('pokemon', 'pokemon_levels', 'items', 'medalGroups', 'itemGroups'));
     }
     public function update(Request $request, $pokemon_id)
     {
-        dd($request->all());
-
-        // ログインしていない場合はログインページにリダイレクト
         if (!Auth::check()) {
-        // リクエストがAJAXの場合は、JSONレスポンスを返すことも可能です
-        if ($request->ajax()) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return redirect()->route('login')->with('error', 'Please login to continue.');
         }
-        // ここでは、ログインページにリダイレクトしていますが、
-        // 必要に応じて別の処理を行っても構いません
-        return redirect()->route('login')->with('error', 'Please login to continue.');
-        }
-
-        $pokemon = PokeModel::find($pokemon_id);
-        if (!$pokemon) {
-            return redirect()->back()->with('error', 'Pokemon not found.');
-        }
-        
-        // アイテムの選択処理
-        $itemIds = $request->input('items'); // アイテムIDの配列として送信されることを期待
-        $pokemon->items()->sync($itemIds); // アイテムとポケモンの紐付け
     
-        // ログインユーザーのみが自分のポケモンを更新できるようにする
-        // ここでポケモンが特定のユーザーに紐づいているかを確認します
+        $pokemon = PokeModel::findOrFail($pokemon_id);
         if ($pokemon->user_id !== Auth::id()) {
             return redirect()->back()->with('error', 'You do not have permission to update this pokemon.');
         }
-        
-        // ステータス加算処理を追加
-        $items = Item::whereIn('id', $itemIds)->get(); // 選択されたアイテムのデータを取得
-        $pokemon_levels = $pokemon->levels()->get(); // ポケモンの各レベルのデータを取得
     
-        foreach ($pokemon_levels as $level) {
-            foreach ($items as $item) {
-                $level->hp += $item->hp;
-                $level->attack += $item->attack;
-                $level->defense += $item->defense;
-                $level->sp_attack += $item->sp_attack;
-                $level->sp_defense += $item->sp_defense;
-                $level->crit_rate += $item->crit_rate;
-                $level->cdr += $item->cdr;
-                $level->attack_speed += $item->attack_speed;
-                $level->move_speed += $item->move_speed;
-            }
-            $level->save(); // 加算後のステータスを保存
-        }
-        
-        // メダルセットIDを取得
-        $medalSetId = $request->input('medal_set');
-        
-        // メダルセットが選択されていれば紐づけ処理を行う（多対多リレーションの例）
-        if (!is_null($medalSetId)) {
-            $pokemon->medalSets()->sync([$medalSetId]); // 仮に多対多リレーションの場合
-        }
-        
-        // アイテムの紐づけ処理を更新
-        if (!empty($itemIds)) {
-            $pokemon->items()->sync($itemIds);
+        $itemIds = $request->input('items', []);
+        $medalSetId = $request->input('medal_group_id');
+    
+        // メダルセットのステータスを取得して適用
+        if ($medalSetId) {
+            $medalGroup = MedalGroup::find($medalSetId);
+            $totalMedalStats = $medalGroup->calculateTotalStats();
+            $this->applyStats($pokemon->levels, $totalMedalStats);
         }
     
-        return redirect()->route('pokemon.builder', $pokemon_name)->with('success', 'Pokemon updated successfully.');
+        // アイテムのステータス適用
+        $items = Item::find($itemIds);
+        $this->applyStats($pokemon->levels, $this->calculateItemStats($items));
+    
+        $pokemon->items()->sync($itemIds);
+        return redirect()->route('pokemon.builder', $pokemon->pokemon_name)->with('success', 'Pokemon updated successfully.');
     }
     
+    private function applyStats($levels, $stats)
+    {
+        foreach ($levels as $level) {
+            foreach ($stats as $key => $value) {
+                $level->{$key} += $value;
+            }
+            $level->save();
+        }
+    }
+    
+    private function calculateItemStats($items)
+    {
+        $stats = ['hp' => 0, 'attack' => 0, 'defense' => 0, 'sp_attack' => 0, 'sp_defense' => 0, 'crit_rate' => 0, 'cdr' => 0, 'move_speed' => 0];
+        foreach ($items as $item) {
+            foreach ($stats as $key => $_) {
+                $stats[$key] += $item->{$key};
+            }
+        }
+        return $stats;
+    }
+    
+    public function destroy($id)
+    {
+        $itemGroup = ItemGroup::find($id);
+        if ($itemGroup) {
+            $itemGroup->delete();
+            return redirect()->route('pokemon.builder', ['pokemon_name' => $pokemon->pokemon_name])->with('success', 'Pokemon updated successfully.');
+        } 
+    }
+
 }

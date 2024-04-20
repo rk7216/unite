@@ -33,9 +33,18 @@
         </nav>
     </header>
 
-    <header>
-        <!-- ヘッダーのコンテンツを追加 -->
-    </header>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
+    
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
 
     <main>
         <form action="{{ route('pokemon.attach-items', ['pokemon_name' => $pokemon->pokemon_name]) }}" method="POST">
@@ -83,10 +92,12 @@
             <!-- メダルの選択フォーム -->
             <section>
                 <h3>Select Medal Set</h3>
-                <select name="medal_set" class="medal-set-select">
-                    <option value="">Select a Medal Set</option>
-                    @foreach ($medalsets as $medalset)
-                        <option value="{{ $medalset->id }}">{{ $medalset->name }}</option>
+                <select name="medal_group_id" id="medal-group-select">
+                    <option value="">Select a Medal Group</option>
+                    @foreach ($medalGroups as $medalGroup)
+                        <option value="{{ $medalGroup->id }}">
+                            {{ $medalGroup->name }}
+                        </option>
                     @endforeach
                 </select>
             </section>
@@ -136,6 +147,42 @@
                                 <td>{{ $level->life_steal }}</td>
                                 <td>{{ $level->attack_speed}}</td>
                                 <td>{{ $level->move_speed }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </section>
+            <section>
+                <h2>Item Groups</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($itemGroups as $group)
+                            <tr>
+                                <td>{{ $group->name }}</td>
+                                <td>
+                                    <form action="{{ route('itemGroups.destroy', $group->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        @if (session('success'))
+                                            <div class="alert alert-success">
+                                                {{ session('success') }}
+                                            </div>
+                                        @endif
+                                        
+                                        @if (session('error'))
+                                            <div class="alert alert-danger">
+                                                {{ session('error') }}
+                                            </div>
+                                        @endif
+                                    </form>
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

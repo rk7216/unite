@@ -9,6 +9,7 @@ use App\Http\Controllers\PokemonTeamController;
 use App\Http\Controllers\MyTeamController;
 use App\Http\Controllers\MedalController;
 use App\Http\Controllers\PokemonItemController;
+use App\Http\Controllers\ItemGroupController;
 
 // routes/web.php
 
@@ -59,3 +60,9 @@ Route::post('/medal', [MedalController::class, 'store'])->name('medal.store');
 Route::get('/medal', [MedalController::class, 'index'])->name('medal.index');
 
 Route::post('/pokemons/{pokemon_name}/attach-items', [PokemonItemController::class, 'attachItems'])->name('pokemon.attach-items');
+
+Route::delete('/medals/{medal}', [MedalController::class, 'destroy'])->name('medal.destroy');
+
+Route::get('/medals/{medal}', [MedalController::class, 'show'])->name('medal.show');
+
+Route::resource('itemGroups', ItemGroupController::class);
