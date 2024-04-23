@@ -12,9 +12,10 @@ class PokemonController extends Controller
     public function index()
     {
         // エロクアントを使用してポケモン名の一意のリストを取得
-        $pokemons = PokeModel::distinct()->pluck('pokemon_name');
+        $pokemons = PokeModel::where('lv', 1)->get();
 
         // ビューにデータを渡す
         return view('posts.index', ['pokemons' => $pokemons]);
     }
+    
 }
