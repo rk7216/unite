@@ -66,3 +66,5 @@ Route::delete('/medals/{medal}', [MedalController::class, 'destroy'])->name('med
 Route::get('/medals/{medal}', [MedalController::class, 'show'])->name('medal.show');
 
 Route::resource('itemGroups', ItemGroupController::class);
+
+Route::get('/medal/team', [MedalGroupController::class, 'index'])->name('medal.index');

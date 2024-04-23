@@ -79,8 +79,8 @@
                         <td>
                             <select name="medals[{{$i}}]">
                                 <option value="">Select a Medal Set</option>
-                                @foreach ($medals as $medal)
-                                    <option value="{{ $medal->id }}">{{ $medal->medal_name }}</option>
+                                @foreach ($medalGroups as $group)
+                                    <option value="{{ $group->id }}">{{ $group->name }}</option>
                                 @endforeach
                             </select>
                         </td>

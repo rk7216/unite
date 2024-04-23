@@ -41,7 +41,9 @@
         <!-- ポケモン一覧表示 -->
         <div class="pokemon-grid">
             @foreach($pokemons as $pokemon)
-                <div><a href="{{ url('/pokemons/' . $pokemon) }}">{{ $pokemon }}</a></div>
+                <a href="{{ url('/pokemons/' . $pokemon->pokemon_name) }}">
+                    <img src="{{ $pokemon->image }}" alt="{{ $pokemon->pokemon_name }}" style="width: 100px; height: auto;">
+                </a>
             @endforeach
         </div>
 
