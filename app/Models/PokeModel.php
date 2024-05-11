@@ -11,7 +11,7 @@ class PokeModel extends Model
 
     protected $table = 'pokemons'; // Explicitly setting the table name is good practice.
     
-    protected $fillable = ['pokemon_name', 'type', 'description']; // Add other attributes as needed.
+    protected $fillable = ['pokemon_name', 'type', 'description', 'lv', 'hp', 'attack', 'defense', 'sp_attack', 'sp_defense', 'crit_rate', 'cdr', 'life_steal', 'attack_speed', 'move_speed', 'image']; // Add other attributes as needed.
 
     /**
      * Items associated with the Pokémon through a pivot table.
@@ -33,10 +33,18 @@ class PokeModel extends Model
 
     /**
      * Levels of the Pokémon, assuming a separate model for levels.
-     */
+    */ 
     public function levels()
     {
         return $this->hasMany(Level::class, 'pokemon_id', 'id')->orderBy('level'); // Assuming 'Level' is a separate model and 'level' is a field in that model.
+    }
+    
+    // ポケモンの特定のレベルデータを取得
+    public function getLevelData($level)
+    {
+        return PokeModel::where('pokemon_name', $this->pokemon_name)
+                        ->where('lv', $level)
+                        ->first();
     }
 }
 
@@ -52,3 +60,4 @@ class Level extends Model
         return $this->belongsTo(PokeModel::class, 'pokemon_id', 'id');
     }
 }
+
