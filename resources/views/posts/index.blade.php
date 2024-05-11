@@ -7,25 +7,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unite Strategy Builder - Pokemon List</title>
-    <link href="{{ asset('/resources/css/styles.css') }}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header>
+<body class="bg-gray-100">
+    <header class="bg-white shadow">
         <div class="register-login-buttons" style="text-align: right;">
             @auth
-                {{-- ログインしている場合、ユーザー名とログアウトボタンを表示 --}}
                 <span class="mr-4">Welcome, {{ Auth::user()->name }}!</span>
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Logout</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
             @else
-                {{-- ログインしていない場合、RegisterとLoginボタンを表示 --}}
                 <a href="{{ route('register') }}" class="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Register</a>
                 <a href="{{ route('login') }}" class="ml-4 px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Login</a>
             @endauth
         </div>
-        <nav style="text-align: center;">
+        <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
             <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
@@ -34,15 +32,15 @@
     </header>
 
 
-    <main>
+    <main class="container mx-auto mt-8">
         <!-- タイトル -->
-        <h1  style="text-align: center;">Unite Strategy Builder</h1>
+        <h1  style="text-center text-4xl font-bold text-indigo-600 mb-6">Unite Strategy Builder</h1>
 
         <!-- ポケモン一覧表示 -->
-        <div class="pokemon-grid">
+        <div class="pokemon-grid grid grid-cols-3 gap-4">
             @foreach($pokemons as $pokemon)
-                <a href="{{ url('/pokemons/' . $pokemon->pokemon_name) }}">
-                    <img src="{{ $pokemon->image }}" alt="{{ $pokemon->pokemon_name }}" style="width: 100px; height: auto;">
+                <a href="{{ url('/pokemons/' . $pokemon->pokemon_name) }}" class="block p-4 bg-white rounded-lg shadow-lg">
+                    <img src="{{ $pokemon->image }}" alt="{{ $pokemon->pokemon_name }}" class="mx-auto" style="width: 100px; height: auto;">
                 </a>
             @endforeach
         </div>

@@ -33,16 +33,12 @@ class MedalGroup extends Model
             'cdr' => 0, 'move_speed' => 0
         ];
     
-        $medals = $this->medals; // ここで一度だけメダルを取得
-        foreach ($medals as $medal) {
+        foreach ($this->medals as $medal) {
             foreach ($stats as $key => $value) {
-                $stats[$key] += $medal->{$key} ?? 0; // 存在しない場合は0を加算
+                $stats[$key] += $medal->{$key} ?? 0;
             }
         }
-    
-        return array_filter($stats, function ($value) {
-            return $value != 0;
-        });
+        return $stats;
     }
     
     public function countMedalColors()

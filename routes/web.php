@@ -8,8 +8,12 @@ use App\Http\Controllers\PokemonBuildController;
 use App\Http\Controllers\PokemonTeamController;
 use App\Http\Controllers\MyTeamController;
 use App\Http\Controllers\MedalController;
+use App\Http\Controllers\MedalGroupController;
 use App\Http\Controllers\PokemonItemController;
 use App\Http\Controllers\ItemGroupController;
+use App\Http\Controllers\ItemGroupMedalGroupController;
+use App\Http\Controllers\PokemonMedalController;
+use App\Http\Controllers\UserPokemonController;
 
 // routes/web.php
 
@@ -55,6 +59,8 @@ Route::get('/teams', [PokemonTeamController::class, 'index'])->name('team.index'
     
 Route::get('/pokemons/{pokemon_name}', [PokemonBuildController::class, 'index'])->name('pokemon.builder');
 
+Route::get('/medal/team', [MedalGroupController::class, 'index'])->name('medalgroup.index');
+
 Route::post('/medal', [MedalController::class, 'store'])->name('medal.store');
 
 Route::get('/medal', [MedalController::class, 'index'])->name('medal.index');
@@ -65,6 +71,14 @@ Route::delete('/medals/{medal}', [MedalController::class, 'destroy'])->name('med
 
 Route::get('/medals/{medal}', [MedalController::class, 'show'])->name('medal.show');
 
-Route::resource('itemGroups', ItemGroupController::class);
+Route::post('/teams/save', [PokemonTeamController::class, 'store'])->name('team.save')->middleware('auth');
 
-Route::get('/medal/team', [MedalGroupController::class, 'index'])->name('medal.index');
+Route::post('/item-group-medal-groups', [ItemGroupMedalGroupController::class, 'store'])->name('item-group-medal-group.store');
+
+Route::post('/user-pokemons', [UserPokemonController::class, 'store'])->name('user-pokemons.store');
+
+Route::delete('/myteam/{id}', [MyTeamController::class, 'destroy'])->name('myteam.destroy');
+
+Route::delete('/item-groups/{id}', [ItemGroupController::class, 'destroy'])->name('itemGroups.destroy');
+
+Route::post('/myteam/update-level/{userPokemonId}', [MyTeamController::class, 'updateLevel'])->name('myteam.updateLevel');

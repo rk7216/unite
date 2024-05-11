@@ -12,6 +12,6 @@ class MedalGroupController extends Controller
         $user_id = auth()->id();  // 認証されたユーザーIDを取得
         $medalGroups = MedalGroup::with('medals')->where('user_id', $user_id)->get();  // ユーザーに属するメダルグループとそのメダルを取得
 
-        return view('medalgroup.index', compact('medalGroups'));  // ビューにメダルグループを渡す
+        return view('posts.medal', compact('medalGroups'));  // ビューにメダルグループを渡す
     }
 }
