@@ -118,7 +118,14 @@
         <tbody class="bg-white divide-y divide-gray-200">
             @foreach ($medalGroups as $medalGroup)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ $medalGroup->name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="font-bold mb-2">{{ $medalGroup->name }}</div>
+                    <div class="flex space-x-2">
+                        @foreach ($medalGroup->getAllMedalImagesUrls() as $imageUrl)
+                            <img src="{{ $imageUrl }}" alt="Medal Image" style="width: 50px; height: auto;">
+                        @endforeach
+                    </div>
+                    </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         {{-- 削除フォーム --}}
                         <form method="POST" action="{{ route('medal.destroy', $medalGroup->id) }}">

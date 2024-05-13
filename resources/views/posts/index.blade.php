@@ -34,10 +34,10 @@
 
     <main class="container mx-auto mt-8">
         <!-- タイトル -->
-        <h1  style="text-center text-4xl font-bold text-indigo-600 mb-6">Unite Strategy Builder</h1>
+        <h1 style="text-center text-4xl font-bold text-indigo-600 mb-6">Unite Strategy Builder</h1>
 
         <!-- ポケモン一覧表示 -->
-        <div class="pokemon-grid grid grid-cols-3 gap-4">
+        <div class="pokemon-grid grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
             @foreach($pokemons as $pokemon)
                 <a href="{{ url('/pokemons/' . $pokemon->pokemon_name) }}" class="block p-4 bg-white rounded-lg shadow-lg">
                     <img src="{{ $pokemon->image }}" alt="{{ $pokemon->pokemon_name }}" class="mx-auto" style="width: 100px; height: auto;">

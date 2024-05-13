@@ -26,9 +26,6 @@ class MyTeamController extends Controller
                 }, 'userPokemons.pokemon', 'userPokemons.itemGroupMedalGroup.itemGroup', 'userPokemons.itemGroupMedalGroup.medalGroup'])
                 ->where('user_id', $user_id)
                 ->get();
-        /*$teams = Team::with(['userPokemons.pokemon', 'userPokemons.itemGroupMedalGroup.itemGroup', 'userPokemons.itemGroupMedalGroup.medalGroup'])
-                     ->where('user_id', $user_id)
-                     ->get();  // ユーザーのチームと関連データを取得 */
         foreach ($teams as $team) {
             foreach ($team->userPokemons as $userPokemon) {
                 $baseStats = [
@@ -119,26 +116,26 @@ class MyTeamController extends Controller
     
         foreach ($items as $item) {
             // アイテムの効果を加算
-            $modifiedStats['hp'] += $item->hp_modifier;
-            $modifiedStats['attack'] += $item->attack_modifier;
-            $modifiedStats['defense'] += $item->defense_modifier;
-            $modifiedStats['sp_attack'] += $item->sp_attack_modifier;
-            $modifiedStats['sp_defense'] += $item->sp_defense_modifier;
-            $modifiedStats['crit_rate'] += $item->crit_rate_modifier;
-            $modifiedStats['cdr'] += $item->cdr_modifier;
-            $modifiedStats['attack_speed'] += $item->attack_speed_modifier;
-            $modifiedStats['move_speed'] += $item->move_speed_modifier;
+            $modifiedStats['hp'] += $item->hp;
+            $modifiedStats['attack'] += $item->attack;
+            $modifiedStats['defense'] += $item->defense;
+            $modifiedStats['sp_attack'] += $item->sp_attack;
+            $modifiedStats['sp_defense'] += $item->sp_defense;
+            $modifiedStats['crit_rate'] += $item->crit_rate;
+            $modifiedStats['cdr'] += $item->cdr;
+            $modifiedStats['attack_speed'] += $item->attack_speed;
+            $modifiedStats['move_speed'] += $item->move_speed;
         }
     
         foreach ($medals as $medal) {            
-            $modifiedStats['hp'] += $medal->hp_modifier;
-            $modifiedStats['attack'] += $medal->attack_modifier;
-            $modifiedStats['defense'] += $medal->defense_modifier;
-            $modifiedStats['sp_attack'] += $medal->sp_attack_modifier;
-            $modifiedStats['sp_defense'] += $medal->sp_defense_modifier;
-            $modifiedStats['crit_rate'] += $medal->crit_rate_modifier;
-            $modifiedStats['cdr'] += $medal->cdr_modifier;
-            $modifiedStats['move_speed'] += $medal->move_speed_modifier;
+            $modifiedStats['hp'] += $medal->hp;
+            $modifiedStats['attack'] += $medal->attack;
+            $modifiedStats['defense'] += $medal->defense;
+            $modifiedStats['sp_attack'] += $medal->sp_attack;
+            $modifiedStats['sp_defense'] += $medal->sp_defense;
+            $modifiedStats['crit_rate'] += $medal->crit_rate;
+            $modifiedStats['cdr'] += $medal->cdr;
+            $modifiedStats['move_speed'] += $medal->move_speed;
         }
     
         return $modifiedStats;
