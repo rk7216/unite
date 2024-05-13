@@ -25,6 +25,12 @@ class MedalGroup extends Model
                     ->withTimestamps();
     }
     
+    public function getAllMedalImagesUrls()
+    {
+        return $this->medals->pluck('image')->filter()->toArray();
+    }
+
+    
     public function calculateTotalStats()
     {
         $stats = [
