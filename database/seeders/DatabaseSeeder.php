@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PokemonsTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
         $this->call(MedalsTableSeeder::class);
+        $this->call(MedalImageURLSeeder::class);
+        $this->call(ImageSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
