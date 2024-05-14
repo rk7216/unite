@@ -15,24 +15,22 @@ class PokemonsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('pokemons')->delete();
-
         $PokemonData = [
-                [				
-               	'pokemon_name' 	=> 	'Absol'	,
-               	'lv' => 1,
-               	'hp' => 3000,
-               	'attack' => 140			,
-               	'defense' => 52			,
-               	'sp_attack' => 	20		,
-               	'sp_defense' =>	36		,
-               	'crit_rate' => 	0		,
-               	'cdr' => 0,
-               	'life_steal' =>	0,
-               	'attack_speed' 	=> 	0.1,
-               	'move_speed' =>	3650,
-               	'created_at' => now(),
-                'updated_at' => now(),
+                [
+                       	'pokemon_name' 	=> 'Absol',
+                       	'lv' => 1,
+                       	'hp' => 3000,
+                       	'attack' => 140,
+                       	'defense' => 52,
+                       	'sp_attack' => 20,
+                       	'sp_defense' =>	36,
+                       	'crit_rate' => 	0,
+                       	'cdr' => 0,
+                       	'life_steal' =>	0,
+                       	'attack_speed' 	=> 0.1,
+                       	'move_speed' =>	3650,
+                       	'created_at' => now(),
+                        'updated_at' => now(),
                 ],
                 [
                         'pokemon_name' => 'Aegislash',
@@ -15380,7 +15378,7 @@ class PokemonsTableSeeder extends Seeder
 ],
 ];
 foreach ($PokemonData as $data) {
-            DB::table('pokemons')->insert($data); // itemsテーブルにデータを挿入
+            DB::table('pokemons')->insert($data);
         }
     }
 }
