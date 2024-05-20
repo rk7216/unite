@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medal Set Creation</title>
+    <title>Unite Strategy Builder - Medal Set Creation</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -22,9 +22,10 @@
         </div>
         <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('items.create') }}" class="mx-4">Item Group</a>|
+            <a href="{{ route('medal.index') }}" class="mx-4">Medal Group</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
-            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
-            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
+            <a href="{{ route('myteam.index') }}" class="ml-4">My Team</a>
         </nav>
     </header>
 
@@ -119,12 +120,14 @@
             @foreach ($medalGroups as $medalGroup)
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="font-bold mb-2">{{ $medalGroup->name }}</div>
-                    <div class="flex space-x-2">
-                        @foreach ($medalGroup->getAllMedalImagesUrls() as $imageUrl)
-                            <img src="{{ $imageUrl }}" alt="Medal Image" style="width: 50px; height: auto;">
-                        @endforeach
-                    </div>
+                        <div class="font-bold mb-2">{{ $medalGroup->name }}</div>
+                        <div class="flex flex-wrap -mx-1">
+                            @foreach ($medalGroup->getAllMedalImagesUrls() as $imageUrl)
+                                <div class="px-1">
+                                    <img src="{{ $imageUrl }}" alt="Medal Image" class="w-12 h-12">
+                                </div>
+                            @endforeach
+                        </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         {{-- 削除フォーム --}}
@@ -141,7 +144,7 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
                         @if ($medalGroup->colorCounts)
-                            <ul>
+                            <ul class="list-disc list-inside">
                                 @foreach ($medalGroup->colorCounts as $color => $count)
                                     <li>{{ $color }}: {{ $count }}</li>
                                 @endforeach

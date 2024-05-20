@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokemon Details</title>
+    <title>Unite Strategy Builder - Pokemon Details</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -24,9 +24,10 @@
         </div>
         <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('items.create') }}" class="mx-4">Item Group</a>|
+            <a href="{{ route('medal.index') }}" class="mx-4">Medal Group</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
-            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
-            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
+            <a href="{{ route('myteam.index') }}" class="ml-4">My Team</a>
         </nav>
     </header>
 
@@ -39,6 +40,26 @@
     @if (session('success'))
         <div class="alert alert-success max-w-md mx-auto mt-4 p-4 bg-green-100 text-green-700 rounded-lg">
             {{ session('success') }}
+            @if(session('itemGroup'))
+                <h3 class="font-bold">Item Group: {{ session('itemGroup')->name }}</h3>
+                <div class="flex">
+                    @foreach(session('items') as $item)
+                        <div class="mr-4">
+                            <img src="{{ $item->image }}" alt="{{ $item->item_name }}" class="w-16 h-16">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            @if(session('medals')->isNotEmpty())
+                <h3 class="font-bold mt-4">Medal Group</h3>
+                <div class="flex">
+                    @foreach(session('medals') as $medal)
+                        <div class="mr-4">
+                            <img src="{{ $medal->image }}" alt="{{ $medal->name }}" class="w-8 h-8">
+                        </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     @endif
 
@@ -88,7 +109,7 @@
     
             <!-- メダルの選択フォーム -->
             <section>
-                <h3 class="font-semibold mb-2">Select Medal Set</h3>
+                <h3 class="font-semibold mb-2">Select Medal Group</h3>
                 <select name="medal_group_id" id="medal-group-select" class="item-select mb-4 p-2 bg-gray-200 rounded">
                     <option value="">Select a Medal Group</option>
                     @foreach ($medalGroups as $medalGroup)

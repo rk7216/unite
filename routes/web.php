@@ -14,6 +14,7 @@ use App\Http\Controllers\ItemGroupController;
 use App\Http\Controllers\ItemGroupMedalGroupController;
 use App\Http\Controllers\PokemonMedalController;
 use App\Http\Controllers\UserPokemonController;
+use App\Http\Controllers\ItemCreateController;
 
 // routes/web.php
 
@@ -82,3 +83,9 @@ Route::delete('/myteam/{id}', [MyTeamController::class, 'destroy'])->name('mytea
 Route::delete('/item-groups/{id}', [ItemGroupController::class, 'destroy'])->name('itemGroups.destroy');
 
 Route::post('/myteam/update-level/{userPokemonId}', [MyTeamController::class, 'updateLevel'])->name('myteam.updateLevel');
+
+Route::get('/items/create', [ItemCreateController::class, 'create'])->name('items.create');
+
+Route::post('/items/store', [ItemCreateController::class, 'store'])->name('items.store');
+
+Route::delete('/item-groups/{id}', [ItemCreateController::class, 'destroy'])->name('itemGroups.destroy');

@@ -25,16 +25,17 @@
         </div>
         <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('items.create') }}" class="mx-4">Item Group</a>|
+            <a href="{{ route('medal.index') }}" class="mx-4">Medal Group</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
-            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
-            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
+            <a href="{{ route('myteam.index') }}" class="ml-4">My Team</a>
         </nav>
     </header>
 
 
     <main class="container mx-auto mt-8">
         <!-- タイトル -->
-        <h1 style="text-center text-4xl font-bold text-indigo-600 mb-6">Unite Strategy Builder</h1>
+        <h1 style="text-center text-4xl font-bold text-indigo-600 mb-6">Unite Strategy Builder - Create Item Group and Medal Group!</h1>
 
         <!-- ポケモン一覧表示 -->
         <div class="pokemon-grid grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
@@ -43,16 +44,6 @@
                     <img src="{{ $pokemon->image }}" alt="{{ $pokemon->pokemon_name }}" class="mx-auto" style="width: 100px; height: auto;">
                 </a>
             @endforeach
-        </div>
-
-        <!-- ポケモン/チーム作成画面へのリンク -->
-        <div>
-            <!-- リンクのコードをここに追加 -->
-        </div>
-
-        <!-- チーム一覧画面へのリンク -->
-        <div>
-            <!-- リンクのコードをここに追加 -->
         </div>
     </main>
 </body>
