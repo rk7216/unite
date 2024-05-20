@@ -22,9 +22,10 @@
         </div>
         <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('items.create') }}" class="mx-4">Item Group</a>|
+            <a href="{{ route('medal.index') }}" class="mx-4">Medal Group</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
-            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
-            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
+            <a href="{{ route('myteam.index') }}" class="ml-4">My Team</a>
         </nav>
     </header>
 
@@ -42,9 +43,8 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Set</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Medal Set</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status Toggle</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item Group</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Medal Group</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -68,14 +68,11 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <select name="medal_groups[{{$i}}]" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    <option value="">Select a Medal Set</option>
+                                    <option value="">Select a Medal Group</option>
                                     @foreach ($medalGroups as $medalgroup)
                                         <option value="{{ $medalgroup->id }}">{{ $medalgroup->name }}</option>
                                     @endforeach
                                 </select>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                    <button type="button" class="status-toggle text-indigo-600 hover:text-indigo-900 bg-white border border-indigo-600 hover:bg-indigo-50 focus:ring-4 focus:ring-indigo-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center" data-index="{{$i}}">Toggle Status</button>
                             </td>
                         </tr>
                         @endfor
@@ -87,17 +84,23 @@
                         <div class="alert alert-success mt-4 p-4 bg-green-100 border border-green-400 text-green-700">
                             {{ session('success') }}
                             <h3 class="font-bold">{{ session('teamName') }}</h3>
-                            @foreach (session('teamDetails') as $detail)
-                                <div>
-                                    <img src="{{ $detail['pokemon']->image }}" alt="{{ $detail['pokemon']->pokemon_name }}" style="width: 100px; height: 100px;">
-                                    @foreach ($detail['items'] as $item)
-                                        <img src="{{ $item->image }}" alt="{{ $item->name }}" style="width: 100px; height: 100px;">
-                                    @endforeach
-                                    @foreach ($detail['medals'] as $medal)
-                                        <img src="{{ $medal->image }}" alt="{{ $medal->name }}" style="width: 100px; height: 100px;">
-                                    @endforeach
-                                </div>
-                            @endforeach
+                            <div class="flex flex-wrap">
+                                @foreach (session('teamDetails') as $detail)
+                                    <div class="flex flex-col items-center m-2">
+                                        <img src="{{ $detail['pokemon']->image }}" alt="{{ $detail['pokemon']->pokemon_name }}" class="w-24 h-24">
+                                        <div class="flex flex-wrap">
+                                            @foreach ($detail['items'] as $item)
+                                                <img src="{{ $item->image }}" alt="{{ $item->name }}" class="w-16 h-16 m-1">
+                                            @endforeach
+                                        </div>
+                                        <div class="flex flex-wrap">
+                                            @foreach ($detail['medals'] as $medal)
+                                                <img src="{{ $medal->image }}" alt="{{ $medal->name }}" class="w-16 h-16 m-1">
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     @endif
                 </div>

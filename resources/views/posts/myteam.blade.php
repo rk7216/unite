@@ -24,9 +24,10 @@
         </div>
         <nav class="text-center bg-indigo-600 text-white text-lg py-3">
             <a href="{{ route('posts.index') }}" class="mr-4">Home</a>|
+            <a href="{{ route('items.create') }}" class="mx-4">Item Group</a>|
+            <a href="{{ route('medal.index') }}" class="mx-4">Medal Group</a>|
             <a href="{{ route('team.index') }}" class="mx-4">Teams</a>|
-            <a href="{{ route('myteam.index') }}" class="mx-4">My Team</a>|
-            <a href="{{ route('medal.index') }}" class="ml-4">Medal Set</a>
+            <a href="{{ route('myteam.index') }}" class="ml-4">My Team</a>
         </nav>
     </header>
 
@@ -116,11 +117,5 @@
             </div>
         @endforeach
     </div>
-    {{-- 以下、スクリプトや追加のマークアップ --}}
-    @if(session('modifiedStats'))
-    <script>
-        console.log('Session Data:', {{ json_encode(session('modifiedStats')) }});
-    </script>
-    @endif
 </body>
 </html>

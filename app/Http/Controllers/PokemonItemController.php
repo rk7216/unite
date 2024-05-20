@@ -1,7 +1,5 @@
 <?php
 
-// PokemonItemController.php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -11,40 +9,43 @@ use App\Models\ItemGroup;
 use App\Models\MedalGroup;
 use Illuminate\Support\Facades\Auth;
 
-
 class PokemonItemController extends Controller
 {
     public function attachItems(Request $request, $pokemonId)
     {
         if (!Auth::check()) {
-            // ログインしていない場合、フラッシュメッセージをセットして同ページに戻る
             return redirect()->back()->with('error', 'You must be logged in to perform this action.');
         }
         
         $userId = Auth::id(); // ログインしているユーザーID
         $pokemonId = $request->input('pokemon_id');
-        $medalGroupId = $request->input('medal_group_id');
         $pokemon = PokeModel::findOrFail($pokemonId);
-        $medalGroup = MedalGroup::findOrFail($medalGroupId);
 
         // アイテムIDを配列で収集
         $itemIds = collect($request->only(['item_1', 'item_2', 'item_3']))->filter()->values();
-        $itemGroupName = $request->input('item_group_name', "Default Item Group"); // フォームから入力された名前を取得、デフォルト値設定
-        
+        $itemGroupName = $request->input('item_group_name', "Default Item Group");
+
         // アイテムグループを作成
         $itemGroup = new ItemGroup();
-        $itemGroup->name = $itemGroupName; // ここでアイテムグループ名をセット
+        $itemGroup->name = $itemGroupName;
         $itemGroup->user_id = $userId;
         $itemGroup->save();
-        
+
         // アイテムとアイテムグループの紐付け
         $itemGroup->items()->sync($itemIds);
 
         // アイテムのデータを取得
         $items = Item::findMany($itemIds);
-        $medals = $medalGroup->medals;
 
-        $pokemon_levels = PokeModel::where('pokemon_name', $pokemon->pokemon_name)->get(); // 同じ名前のポケモン（異なるレベル）を取得
+        // メダルグループが存在する場合のみ取得
+        $medalGroupId = $request->input('medal_group_id');
+        $medals = collect([]);
+        if ($medalGroupId) {
+            $medalGroup = MedalGroup::findOrFail($medalGroupId);
+            $medals = $medalGroup->medals;
+        }
+
+        $pokemon_levels = PokeModel::where('pokemon_name', $pokemon->pokemon_name)->get();
 
         $calculatedLevels = [];
         foreach ($pokemon_levels as $level) {
@@ -86,9 +87,15 @@ class PokemonItemController extends Controller
             $calculatedLevels[] = $calculated;
         }
 
+        // セッションに保存してフラッシュメッセージとして渡す
         return redirect()->route('pokemon.builder', [
             'pokemon_name' => $pokemon->pokemon_name,
             'levels' => json_encode($calculatedLevels)
-        ])->with('success', 'Item group and medal set applied created and stats calculated successfully.');
+        ])->with([
+            'success' => 'Item group and medal set applied created and stats calculated successfully.',
+            'itemGroup' => $itemGroup,
+            'items' => $items,
+            'medals' => $medals
+        ]);
     }
 }
