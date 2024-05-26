@@ -15,69 +15,69 @@ class MedalController extends Controller
     public function store(Request $request)
     {
         try {
-        // ユーザーがログインしているか確認
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'You must be logged in to create a medal set.');
-        }
-
-        $validated = $request->validate([
-            // 'name' => 'required|string|max:255',
-            'medals' => 'required|array',
-            'medals.*' => 'exists:medals,id'
-        ]);
-        
-        $user_id = Auth::id(); // ログインしているユーザーのIDを取得
-
-        // メダルグループを作成
-        $medalGroup = new MedalGroup();
-        $medalGroup->name = $request->input('name');
-        $medalGroup->user_id = $user_id;
-        $medalGroup->save();
+            // ユーザーがログインしているか確認
+            if (!Auth::check()) {
+                return redirect()->route('login')->with('error', 'You must be logged in to create a medal set.');
+            }
     
-        // メダルグループにメダルを紐づけ
-        $medalsIds = array_column($validated['medals'], 'id');
-        $medalGroup->medals()->attach($medalsIds);
+            $validated = $request->validate([
+                'name' => 'required|string|max:255',
+                'medals' => 'required|string',
+            ]);
+            
+            $user_id = Auth::id(); // ログインしているユーザーのIDを取得
+            $medalIds = json_decode($request->input('medals'));
+    
+            // メダルグループを作成
+            $medalGroup = new MedalGroup();
+            $medalGroup->name = $request->input('name');
+            $medalGroup->user_id = $user_id;
+            $medalGroup->save();
         
-        // 選択されたメダルの名前を取得
-        $selectedMedals = Medal::whereIn('id', $medalsIds)->get(['medal_name']);
-        
-        // 選択されたメダルの名前をセッションに保存
-        $request->session()->flash('selectedMedals', $selectedMedals->pluck('medal_name')->toArray());
-        
-        // ステータスの合計値を計算
-        $totalStats = [
-            'hp' => 0,
-            'attack' => 0,
-            'defense' => 0,
-            'sp_attack' => 0,
-            'sp_defense' => 0,
-            'crit_rate' => 0,
-            'cdr' => 0,
-            'move_speed' => 0
-        ];
-        foreach ($medalGroup->medals as $medal) {
-            $totalStats['hp'] += $medal->hp;
-            $totalStats['attack'] += $medal->attack;
-            $totalStats['defense'] += $medal->defense;
-            $totalStats['sp_attack'] += $medal->sp_attack;
-            $totalStats['sp_defense'] += $medal->sp_defense;
-            $totalStats['crit_rate'] += $medal->crit_rate;
-            $totalStats['cdr'] += $medal->cdr;
-            $totalStats['move_speed'] += $medal->move_speed;
-        }
-        
-        // 色のカウントを計算
-        $colorCounts = $medalGroup->countMedalColors();
-
-        // 色のカウントをフラッシュセッションに保存
-        $request->session()->flash('colorCounts', $colorCounts);
-
-        return redirect()->route('medal.index')->with('success', 'Medal Set created successfully.')->with('totalStats', $totalStats);
+            // メダルグループにメダルを紐づけ
+            $medalGroup->medals()->attach($medalIds);
+            
+            // 選択されたメダルの名前を取得
+            $selectedMedals = Medal::whereIn('id', $medalIds)->get(['medal_name']);
+            
+            // 選択されたメダルの名前をセッションに保存
+            $request->session()->flash('selectedMedals', $selectedMedals->pluck('medal_name')->toArray());
+            
+            // ステータスの合計値を計算
+            $totalStats = [
+                'hp' => 0,
+                'attack' => 0,
+                'defense' => 0,
+                'sp_attack' => 0,
+                'sp_defense' => 0,
+                'crit_rate' => 0,
+                'cdr' => 0,
+                'move_speed' => 0
+            ];
+            foreach ($medalGroup->medals as $medal) {
+                $totalStats['hp'] += $medal->hp;
+                $totalStats['attack'] += $medal->attack;
+                $totalStats['defense'] += $medal->defense;
+                $totalStats['sp_attack'] += $medal->sp_attack;
+                $totalStats['sp_defense'] += $medal->sp_defense;
+                $totalStats['crit_rate'] += $medal->crit_rate;
+                $totalStats['cdr'] += $medal->cdr;
+                $totalStats['move_speed'] += $medal->move_speed;
+            }
+            
+            // 色のカウントを計算
+            $colorCounts = $medalGroup->countMedalColors();
+    
+            // 色のカウントをフラッシュセッションに保存
+            $request->session()->flash('colorCounts', $colorCounts);
+    
+            return redirect()->route('medal.index')->with('success', 'Medal Set created successfully.')->with('totalStats', $totalStats);
         } catch (\Exception $e) {
-        // 例外が発生した場合はエラーを表示
-        return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+            // 例外が発生した場合はエラーを表示
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
-    }
+
 
     public function index()
     {
