@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unite Strategy Builder - Medal Set Creation</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .medal-image {
+            width: 80px;
+            height: 80px;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .selected {
+            border: 2px solid blue;
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
     <header class="bg-white shadow">
@@ -41,24 +52,40 @@
             </div>
         @endif
         <h1 class="text-3xl font-bold text-center mb-6">Create Your Medal Set</h1>
+        <!-- <div class="flex justify-center mb-4">
+            <label for="colorFilter" class="block text-sm font-medium text-gray-700 mr-2">Filter by Color:</label>
+            <select id="colorFilter" class="mt-1 block w-1/3 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="">All</option>
+                <option value="Black">Black</option>
+                <option value="Blue">Blue</option>
+                <option value="Brown">Brown</option>
+                <option value="Gray">Gray</option>
+                <option value="Green">Green</option>
+                <option value="Navy">Navy</option>
+                <option value="Pink">Pink</option>
+                <option value="Purple">Purple</option>
+                <option value="Red">Red</option>
+                <option value="White">White</option>
+                <option value="Yellow">Yellow</option>
+            </select>
+        </div> -->
+        
         <form id="medalSetForm" action="{{ route('medal.store') }}" method="POST" class="bg-white p-6 rounded-lg shadow-lg">
-            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             @csrf
-            @for ($i = 0; $i < 10; $i++)
-                <div class="medal-selection mb-4">
-                    <label for="medal-select-{{ $i }}" class="block text-sm font-medium text-gray-700">Medal {{ $i + 1 }}:</label>
-                    <select name="medals[{{ $i }}][id]" id="medal-select-{{ $i }}" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="">Select a Medal</option>
-                        @foreach ($medals as $medal)
-                            <option value="{{ $medal->id }}">{{ $medal->medal_name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-            @endfor
-            <!-- グループ名の入力フィールドを追加 -->
-            <div  class="mb-4">
+            <input type="hidden" name="medals" id="selectedMedalsInput">
+            <input type="hidden" name="name" id="group-name-input" required>
+            
+            <div id="medal-images" class="flex flex-wrap justify-center mb-4">
+                @foreach ($medals as $medal)
+                    <div class="m-2">
+                        <img src="{{ $medal->image }}" alt="{{ $medal->medal_name }}" class="medal-image" data-medal-id="{{ $medal->id }}">
+                    </div>
+                @endforeach
+            </div>
+            
+            <div class="mb-4">
                 <label for="group-name" class="block text-sm font-medium text-gray-700">Group Name:</label>
-                <input type="text" name="name" id="group-name" required class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="text" name="name" id="group-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
             <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg">Submit Medal Set</button>
         </form>
@@ -155,5 +182,53 @@
             @endforeach
         </tbody>
     </table>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const medalImages = document.querySelectorAll('.medal-image');
+            const selectedMedalsInput = document.getElementById('selectedMedalsInput');
+            const groupNameInput = document.getElementById('group-name-input');
+            const form = document.getElementById('medalSetForm');
+            const colorFilter = document.getElementById('colorFilter');
+            const medalItems = document.querySelectorAll('.medal-item');
+            
+            let selectedMedals = [];
+
+            medalImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    const medalId = img.getAttribute('data-medal-id');
+                    if (selectedMedals.includes(medalId)) {
+                        selectedMedals = selectedMedals.filter(id => id !== medalId);
+                        img.classList.remove('selected');
+                    } else {
+                        if (selectedMedals.length < 10) {
+                            selectedMedals.push(medalId);
+                            img.classList.add('selected');
+                        } else {
+                            alert('You can select up to 10 medals only.');
+                        }
+                    }
+                    selectedMedalsInput.value = JSON.stringify(selectedMedals);
+                });
+            });
+
+            form.addEventListener('submit', (e) => {
+                const groupName = document.getElementById('group-name').value;
+                groupNameInput.value = groupName;
+            });
+
+            colorFilter.addEventListener('change', () => {
+                const selectedColor = colorFilter.value.toLowerCase();
+                medalItems.forEach(item => {
+                    const color1 = item.getAttribute('data-color1').toLowerCase();
+                    const color2 = item.getAttribute('data-color2').toLowerCase();
+                    if (!selectedColor || color1 === selectedColor || color2 === selectedColor) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
